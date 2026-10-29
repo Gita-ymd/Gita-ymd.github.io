@@ -517,7 +517,7 @@ section.blk .in{padding-block:104px 0}
     });
   })(h1);
   h1.querySelectorAll('.w').forEach(function(w,i){ w.style.animationDelay = (i*0.045)+'s'; });
-  if (!document.hidden && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('anim');
+  if (!document.hidden && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) { document.documentElement.classList.add('anim'); setTimeout(function(){ document.documentElement.classList.remove('anim'); }, 2000); }
 
   // Relógio São Paulo
   var clk = document.getElementById('clk');

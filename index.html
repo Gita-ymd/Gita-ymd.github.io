@@ -67,7 +67,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .hero canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.55;pointer-events:none}
 .hero .in{position:relative;padding-block:96px 120px;display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:56px;align-items:center}
 .hero h1{font-size:clamp(40px,6.6vw,80px);line-height:1.02;font-weight:600}
-.hero h1 .w{display:inline-block;animation:rise .7s var(--ease) both}
+.hero h1 .w{display:inline-block}
+.anim .hero h1 .w{animation:rise .7s var(--ease) both}
 .hero h1 em{font-style:normal;background:linear-gradient(90deg,#9CC2FF,#5EE1FF);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero .lead{margin-top:24px;font-size:18px;max-width:46ch;color:rgba(255,255,255,.84)}
 .hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
@@ -77,7 +78,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .btn.fill{background:#fff;color:#0A1730;border-color:#fff}
 .btn.ghost:hover{background:rgba(255,255,255,.12)}
 
-.card-profile{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:20px;padding:26px;display:grid;gap:18px;animation:tilt 1s var(--ease) .15s both;transform-style:preserve-3d}
+.card-profile{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:20px;padding:26px;display:grid;gap:18px;transform-style:preserve-3d}
+.anim .card-profile{animation:tilt 1s var(--ease) .15s both}
 @keyframes tilt{from{opacity:0;transform:perspective(1000px) rotateX(18deg) rotateY(-14deg) scale(.95)}to{opacity:1;transform:none}}
 .avatar{width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,#2F6BFF,#22C3EE);display:grid;place-items:center;font-family:var(--f-display);font-weight:700;font-size:24px}
 .card-profile .who{display:flex;gap:14px;align-items:center}
@@ -515,6 +517,7 @@ section.blk .in{padding-block:104px 0}
     });
   })(h1);
   h1.querySelectorAll('.w').forEach(function(w,i){ w.style.animationDelay = (i*0.045)+'s'; });
+  if (!document.hidden && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('anim');
 
   // Relógio São Paulo
   var clk = document.getElementById('clk');
